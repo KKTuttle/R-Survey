@@ -1,8 +1,6 @@
 <h3>Oops there were some errors:</h3>
 <ul>
-  <% @question.errors().full_messages().each() do |message| %>
-    <li><%= message %></li>
-  <% end %>
+  <%= @question.errors().full_messages().first() %>
 </ul>
 
 <h5><a href="/" >Return to main page to try again</a></h5>
