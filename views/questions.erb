@@ -1,5 +1,4 @@
-
-<h2>Questions</h2>
+<h2>Questions for <%= @survey.title() %> survey</h2>
 <% if @survey.questions().any? %>
   <ul>
     <% @survey.questions().each do |question| %>
@@ -10,4 +9,11 @@
 <% else %>
   <p> There are no questions yet! </p>
 <% end %>
+
+<form action="/surveys/<%=@survey.id() %>/questions" method="post">
+  <label for="question">Create Question:</label>
+  <input type="text" name="question" id="question">
+  <button type="submit" name="button">Create Question</button>
+</form>
+
 <a href="/">Return Home</a>
