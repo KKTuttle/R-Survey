@@ -1,0 +1,12 @@
+
+<h2>Questions</h2>
+<% if @questions.any? %>
+  <ul>
+    <% @questions.each do |question| %>
+      <li><a href="/questions/<%= question.id() %>"><%= question.description() %></a>
+      <a href="/questions/<%=question.id() %>/edit">Edit</a></li>
+    <%end%>
+  </ul>
+<% else %>
+  <p> There are no questions yet! </p>
+<% end %>

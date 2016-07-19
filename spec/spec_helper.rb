@@ -11,7 +11,7 @@ RSpec.configure do |config|
       survey.destroy()
     end
     Question.all().each() do |question|
-    question.destroy()
+      question.destroy()
     end
   end
 end
