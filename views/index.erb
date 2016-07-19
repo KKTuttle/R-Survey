@@ -1,0 +1,19 @@
+<h1>Survey</h1>
+
+<form action="/surveys" method="post">
+  <label for="title">Name your survey</label>
+  <input type="title" name="title" id="title">
+  <button type="submit" name="button">Create survey</button>
+</form>
+
+<h2>Surveys</h2>
+<% if @surveys.any? %>
+  <ul>
+    <% @surveys.each do |survey| %>
+      <li><a href="/surveys/<%= survey.id() %>"><%= survey.title() %></a>
+      <a href="/surveys/<%=survey.id() %>/edit">Edit</a></li>
+    <%end%>
+  </ul>
+<% else %>
+  <p> There are no surveys yet! </p>
+<% end %>
