@@ -1,0 +1,16 @@
+<h2>Answers for <%= @question.description() %> </h2>
+
+<% if @question.answers().any? %>
+  <ul>
+    <% @question.answers().each do |answer| %>
+      <li><%= answer.answer1() %></li>
+      <li><%= answer.answer2() %></li>
+      <li><%= answer.answer3() %></li>
+      <li><%= answer.answer4() %></li>
+    <%end%>
+  </ul>
+<%else%>
+  <p>There are no answers yet!</p>
+<%end%>
+
+<a href="/">Return Home</a>

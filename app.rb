@@ -5,6 +5,7 @@ require("sinatra/reloader")
 require("sinatra/activerecord")
 require("./lib/survey")
 require("./lib/question")
+require("./lib/answer")
 also_reload("lib/**/*.rb")
 
 get('/') do
@@ -113,4 +114,27 @@ get("/clear") do
     question.destroy()
   end
   redirect("/")
+end
+
+get('/questions/:id/answers') do
+  @question = Question.find(params.fetch('id').to_i())
+  @questions = Question.all()
+  erb(:answers_form)
+end
+
+post('/questions/:id/answers') do
+  @question = Question.find(params.fetch('id').to_i())
+  question_id = params.fetch('id').to_i()
+  answer1 = params.fetch('answer1')
+  answer2 = params.fetch('answer2')
+  answer3 = params.fetch('answer3')
+  answer4 = params.fetch('answer4')
+  @answer = Answer.new({:answer1 => answer1, :answer2 => answer2, :answer3 => answer3, :answer4 => answer4, :question_id => question_id})
+  @answers = Answer.all()
+  if @answer.save()
+    erb(:answers)
+  else
+    erb(:answer_errors)
+  end
+
 end

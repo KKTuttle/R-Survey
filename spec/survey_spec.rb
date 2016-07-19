@@ -18,7 +18,7 @@ describe(Survey) do
     expect(survey.save()).to(eq(false))
   end
 
-  describe("questions") do
+  describe("#questions") do
     it "tells which questions are in the survey" do
       test_survey = Survey.create({:title => "New Survey"})
       question1 = Question.create({:description => "How are you?", :survey_id => test_survey.id})

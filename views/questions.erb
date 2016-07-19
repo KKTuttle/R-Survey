@@ -2,8 +2,9 @@
 <% if @survey.questions().any? %>
   <ul>
     <% @survey.questions().each do |question| %>
-      <li><%= question.description() %></a>
+      <li><a href="/questions/<%=question.id() %>/answers"><%= question.description() %></a>
       <a href="/questions/<%=question.id() %>/edit">Edit</a></li>
+      
     <%end%>
   </ul>
 <% else %>
