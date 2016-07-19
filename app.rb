@@ -30,6 +30,7 @@ get('/surveys/:id') do
   @questions = Question.all()
   erb(:questions)
 end
+
 post('/surveys/:id/questions') do
   description = params.fetch('question')
   survey_id = params.fetch('id')
@@ -51,7 +52,36 @@ end
 patch('/surveys/:id') do
   @survey = Survey.find(params.fetch('id').to_i())
   title = params.fetch('survey_new_name')
-  @survey = Survey.update({:title => title})
+  @survey = @survey.update({:title => title})
+  @surveys = Survey.all()
+  erb(:index)
+end
+
+delete('/surveys/:id') do
+  @survey = Survey.find(params.fetch('id').to_i())
+  @survey.destroy()
+  @surveys = Survey.all()
+  erb(:index)
+end
+
+get('/questions/:id/edit') do
+  @question = Question.find(params.fetch('id').to_i())
+  erb(:question_edit)
+end
+
+patch('/questions/:id') do
+  @question = Question.find(params.fetch('id').to_i())
+  description = params.fetch('question_new_name')
+  @question = @question.update({:description => description})
+  @questions = Question.all()
+  @surveys = Survey.all()
+  erb(:index)
+end
+
+delete('/questions/:id') do
+  @question = Question.find(params.fetch('id').to_i())
+  @question.destroy()
+  @questions = Question.all()
   @surveys = Survey.all()
   erb(:index)
 end
