@@ -1,4 +1,4 @@
-ENV['RACK_ENV'] = 'test'
+ENV['RACK_ENV'] = 'development'
 require('rspec')
 require('pg')
 require('sinatra/activerecord')

@@ -9,6 +9,7 @@ also_reload("lib/**/*.rb")
 
 get('/') do
   @surveys = Survey.all()
+  @questions = Question.all()
   erb(:index)
 end
 
@@ -31,9 +32,10 @@ get('/surveys/:id') do
 end
 
 post('/questions') do
-  @surveys = Survey.all()
   description = params.fetch('question')
-  @question = Question.new({:description => description, :id => nil})
+  survey_id = params.fetch('survey_id')
+  @survey = Survey.find(params.fetch('survey_id').to_i())
+  @question = Question.create({:description => description, :survey_id => survey_id, :id => nil})
   @questions = Question.all()
   if @question.save()
     erb(:questions)
@@ -45,7 +47,5 @@ end
 get('/questions/:id') do
   @question = Question.find(params.fetch('id').to_i())
   @questions = Question.all()
-
-
   erb(:questions)
 end
