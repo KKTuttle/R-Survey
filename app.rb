@@ -116,13 +116,13 @@ get("/clear") do
   redirect("/")
 end
 
-get('/questions/:id/answers') do
+get('/questions/:id/answers/new') do
   @question = Question.find(params.fetch('id').to_i())
   @questions = Question.all()
   erb(:answers_form)
 end
 
-post('/questions/:id/answers') do
+post('/questions/:id/answers/new') do
   @question = Question.find(params.fetch('id').to_i())
   question_id = params.fetch('id').to_i()
   answer1 = params.fetch('answer1')
@@ -136,5 +136,10 @@ post('/questions/:id/answers') do
   else
     erb(:answer_errors)
   end
+end
 
+get('/questions/:id/answers') do
+  @question = Question.find(params.fetch('id').to_i())
+  @answers = Answer.all()
+  erb(:answers)
 end

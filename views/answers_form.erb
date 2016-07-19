@@ -1,6 +1,6 @@
 <h1>Create answers for <%= @question.description() %>.</h1>
 
-<form action="/questions/<%=@question.id() %>/answers" method="post">
+<form action="/questions/<%=@question.id() %>/answers/new" method="post">
   <label for="answer1">Create First Answer:</label>
   <input class="form-control" type="text" name="answer1" id="answer1">
   <label for="answer2">Create Second Answer:</label>
